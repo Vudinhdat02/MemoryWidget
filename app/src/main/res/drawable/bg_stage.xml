@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Nền "màn hình chính" giả để widget xem trước nổi bật lên -->
+<!-- Nền "màn hình chính" giả (gradient giống hình nền) để thấy rõ độ trong suốt và hiệu ứng kính của widget xem trước -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <corners android:radius="20dp" />
-    <solid android:color="@color/track" />
+    <gradient
+        android:angle="315"
+        android:centerColor="@color/stage_b"
+        android:endColor="@color/stage_c"
+        android:startColor="@color/stage_a" />
 </shape>

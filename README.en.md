@@ -13,6 +13,7 @@ battery and device info**, refreshed in real time. No root, no Internet permissi
 - **Live updates** (about every 3 s) while the screen is on. When the screen is off nothing runs, so battery impact is minimal.
 - **In-app preview**: every widget is shown with your device's real numbers and has an *Add to home screen* button.
 - **Clean RAM button** (in the app and on the 2×4 widget): stops background apps and clears this app's own cache.
+- **Widget appearance**: adjust the background **transparency** (0-100%) and turn on a **Liquid Glass** effect - applies to every widget.
 - **Material You** colors, automatic **light/dark** theme, **English + Vietnamese**.
 - Requires **Android 12+** (API 31).
 
@@ -22,7 +23,7 @@ battery and device info**, refreshed in real time. No root, no Internet permissi
 |---|---|---|
 | Device info | 4×2 | Clock + date, RAM ring, storage bar, battery bar (mV / temperature) |
 | Terminal style | 4×2 | Device name, Android version, chip, battery, disk in a terminal look |
-| RAM usage | 2×1 | RAM usage arc gauge |
+| RAM usage | 2×1 | Usage ring on the left (same shape as the Storage widget) and RAM used |
 | Internal storage | 2×1 | Usage ring and free space |
 | Battery | 2×1 | Battery ring, level, temperature (bolt while charging) |
 | RAM details | 2×2 | Large gauge, usage %, total and available |
@@ -53,6 +54,8 @@ battery and device info**, refreshed in real time. No root, no Internet permissi
 - **Add a widget from the app (with preview):** open the app, scroll to *Home screen widgets*, look at the previews, tap **Add to home screen**.
 - **Add a widget from the launcher:** long-press an empty spot on the home screen → **Widgets** → **RAM & ROM** → pick one.
 - Tap any widget to open the details screen.
+- **Transparency / Liquid Glass:** in the app, use the *Widget appearance* card above the widget list. The previews update as you drag; home-screen widgets update when you release.
+  Launchers don't let widgets blur the wallpaper behind them, so the glass look is a gradient-and-highlight simulation rather than a real blur.
 - **Clean RAM:** tap the button in the app (or the round button on the 2×4 widget). Android manages RAM on its own, background apps can restart
   immediately and other apps' caches can't be cleared without root, so the amount freed is often small - that's a system limit, not a bug.
 - **Keep widgets live and battery-friendly:** open the app once after each install/update and set the app's battery usage to **Unrestricted**
@@ -86,11 +89,12 @@ Requires JDK 17+ and the Android SDK (platform 35).
 
 Output: `app/build/outputs/apk/release/app-release.apk`. Point Gradle to the SDK via `ANDROID_HOME` or `local.properties` (`sdk.dir=...`, not committed).
 
-**Signing:** if a `release.keystore` exists in the project root it is used (passwords from `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`, default `memwidget`);
+**Signing:** if `keystore.properties` + `release.jks` exist in the project root they are used (`storeFile`, `storePassword`, `keyAlias`, `keyPassword`);
+else a `release.keystore` (restored by CI from a secret) is used with `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`;
 otherwise the debug key is used so the project still builds. The keystore is git-ignored - never commit it. APKs signed with different keys can't be installed over each other.
 
 **GitHub Actions:** `.github/workflows/build.yml` builds on every push to `main` / pull request (artifact `RAM-ROM-apk`) and publishes the APK to **Releases** when you push a tag like `v1.2`.
-To sign CI builds with your own key add the repository secret `KEYSTORE_BASE64` (`base64 -w0 release.keystore`) and optionally `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`.
+To sign CI builds with your own key add the repository secret `KEYSTORE_BASE64` (`base64 -w0 release.jks`) together with `KEYSTORE_PASSWORD`, `KEY_ALIAS` (`memwidget`) and `KEY_PASSWORD` (values are in `keystore.properties`). Back up `release.jks` and `keystore.properties` somewhere safe.
 
 ## Contributing
 

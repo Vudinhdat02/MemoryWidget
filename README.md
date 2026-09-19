@@ -14,6 +14,7 @@ Không cần root, không xin quyền Internet, không thu thập dữ liệu.
 - **Cập nhật trực tiếp** (~3 giây/lần) khi màn hình bật; tắt màn hình là dừng hoàn toàn nên gần như không tốn pin.
 - **Xem trước ngay trong app**: mỗi widget có hình xem trước hiển thị số liệu thật của máy bạn và nút *Thêm vào màn hình chính*.
 - **Nút dọn RAM** (trong app và trên widget 2×4): dừng các ứng dụng đang chạy nền và xóa cache của chính app này.
+- **Tùy chỉnh giao diện widget**: chỉnh **độ trong suốt** của nền (0-100%) và bật **hiệu ứng kính (Liquid Glass)** - áp dụng cho mọi widget.
 - Màu **Material You** (theo hình nền), giao diện **sáng/tối** tự động, hỗ trợ **tiếng Việt + tiếng Anh**.
 - Yêu cầu **Android 12 trở lên** (API 31+).
 
@@ -23,7 +24,7 @@ Không cần root, không xin quyền Internet, không thu thập dữ liệu.
 |---|---|---|
 | Thông tin thiết bị | 4×2 | Đồng hồ + ngày, vòng RAM, thanh bộ nhớ trong, thanh pin (mV / nhiệt độ) |
 | Kiểu terminal | 4×2 | Tên máy, phiên bản Android, chip, pin, ổ đĩa theo phong cách terminal |
-| RAM sử dụng | 2×1 | Cung đo % RAM đang dùng |
+| RAM sử dụng | 2×1 | Vòng % bên trái (giống widget Bộ nhớ trong) và dung lượng RAM đã dùng |
 | Bộ nhớ trong | 2×1 | Vòng % và dung lượng còn trống |
 | Pin | 2×1 | Vòng pin, % pin, nhiệt độ (có tia sét khi đang sạc) |
 | RAM chi tiết | 2×2 | Cung đo lớn, % dùng, tổng và dung lượng còn trống |
@@ -60,6 +61,12 @@ bấm **Thêm vào màn hình chính** ở widget bạn thích rồi xác nhận
 **Cách 2 - từ launcher:** nhấn giữ vào chỗ trống trên màn hình chính → **Widget** → tìm **RAM & ROM** → chọn mẫu → kéo ra màn hình.
 
 Chạm vào bất kỳ widget nào để mở màn hình chi tiết của app.
+
+### Độ trong suốt và hiệu ứng kính
+
+Trong app, mục *Giao diện widget* (phía trên danh sách widget): kéo thanh **Độ trong suốt** để làm nền widget trong hơn, bật công tắc
+**Hiệu ứng kính (Liquid Glass)** để nền mờ như kính có viền sáng. Hình xem trước đổi ngay khi bạn chỉnh, widget trên màn hình chính đổi khi bạn thả tay.
+Launcher không cho widget làm mờ hình nền phía sau, nên hiệu ứng kính là bản mô phỏng bằng gradient và viền sáng chứ không phải làm mờ thật.
 
 ### Dọn RAM
 
@@ -106,7 +113,8 @@ App **không có quyền Internet**, không thu thập hay gửi dữ liệu đi
 
 Cần JDK 17+ và Android SDK (platform 35).
 
-**Android Studio:** mở thư mục dự án → đợi Gradle sync → *Build > Build APK(s)*.
+**Android Studio:** mở thư mục dự án → đợi Gradle sync → mở *Build Variants* (góc dưới bên trái) và chọn `release` → *Build > Build APK(s)*.
+(Nếu để `debug` thì ra bản debug, không phải bản ký bằng khóa của bạn.)
 
 **Dòng lệnh:**
 
@@ -119,12 +127,24 @@ hoặc file `local.properties` (`sdk.dir=...`, file này không được đưa l
 
 ### Ký APK
 
-- Nếu có file `release.keystore` ở thư mục gốc, app được ký bằng khóa đó (mật khẩu đọc từ biến môi trường
-  `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`; mặc định `memwidget` cho cả ba).
-- Nếu **không có**, gradle tự dùng khóa debug để vẫn build được.
-- File keystore **không nằm trong repo** (đã chặn trong `.gitignore`). APK ký bằng hai khóa khác nhau thì không cài đè lên nhau được,
-  muốn cập nhật thì hãy luôn dùng cùng một khóa (hoặc gỡ bản cũ trước).
-- Tạo khóa mới: `keytool -genkeypair -v -keystore release.keystore -alias memwidget -keyalg RSA -keysize 2048 -validity 36500`.
+- Có `keystore.properties` + `release.jks` ở thư mục gốc thì bản `release` được ký bằng khóa đó. File `keystore.properties` gồm 4 dòng:
+
+  ```properties
+  storeFile=release.jks
+  storePassword=MAT_KHAU_CUA_BAN
+  keyAlias=memwidget
+  keyPassword=MAT_KHAU_CUA_BAN
+  ```
+- Không có hai file trên nhưng có `release.keystore` (GitHub Actions tự tạo từ secret) thì dùng khóa này, mật khẩu đọc từ biến môi trường
+  `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`.
+- Không có gì cả thì gradle dùng khóa debug để vẫn build được.
+- Các file khóa **không nằm trong repo** (đã chặn trong `.gitignore`). APK ký bằng hai khóa khác nhau thì không cài đè lên nhau được,
+  nên hãy luôn dùng cùng một khóa và **sao lưu `release.jks` + `keystore.properties`** ở nơi an toàn. Mất khóa là không cập nhật được app đã phát hành.
+- Tạo khóa mới:
+
+  ```bash
+  keytool -genkeypair -v -keystore release.jks -storetype PKCS12 -alias memwidget -keyalg RSA -keysize 2048 -validity 36500
+  ```
 
 ### Build tự động bằng GitHub Actions
 
@@ -138,13 +158,14 @@ Repo đã có workflow `.github/workflows/build.yml`:
   git push origin v1.2
   ```
 - Muốn APK trên GitHub ký bằng khóa của bạn: vào *Settings → Secrets and variables → Actions* và thêm
-  `KEYSTORE_BASE64` (nội dung base64 của file keystore; `base64 -w0 release.keystore`), tùy chọn thêm `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`.
+  `KEYSTORE_BASE64` (nội dung base64 của file khóa: `base64 -w0 release.jks`), cùng `KEYSTORE_PASSWORD`, `KEY_ALIAS` (`memwidget`) và `KEY_PASSWORD` (đều lấy trong `keystore.properties`).
 
 ## Cấu trúc mã nguồn
 
 ```
 app/src/main/java/com/vdd/memwidget/
   MainActivity.java        Màn hình chính: chi tiết RAM/ROM, dọn RAM, thư viện widget có xem trước
+  WidgetStyle.java         Tuỳ chọn độ trong suốt / hiệu ứng kính và cách gắn vào nền widget
   WidgetKinds.java         Danh sách 8 widget, kích thước, khóa chống cập nhật thừa
   WidgetViews.java         Dựng giao diện (RemoteViews) cho từng widget, tự co giãn theo cỡ thật
   WidgetUpdater.java       Đẩy cập nhật cho các widget (chỉ khi dữ liệu / kích thước / giao diện đổi)

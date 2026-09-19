@@ -1,57 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Bộ nhớ trong 2x1 (viên thuốc): vòng % + dung lượng còn trống -->
+<!-- Bộ nhớ trong 2x1 (viên thuốc): vòng % + dung lượng còn trống
+     widget_frame lấp đầy ô launcher cấp; widget_root là thẻ thấp hơn ô một chút, nằm giữa theo chiều dọc
+     (chiều cao thật do WidgetViews đặt) để không cao hơn các icon ứng dụng bên cạnh. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_root"
+    android:id="@+id/widget_frame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/widget_pill_bg">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/widget_root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="14dp">
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical">
 
         <ImageView
-            android:id="@+id/sr_ring"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:id="@+id/widget_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="@null"
-            android:scaleType="fitCenter" />
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            android:src="@drawable/widget_pill_bg" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="14dp">
 
-            <TextView
-                android:id="@+id/sr_caption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:text="@string/sr_caption"
-                android:textColor="@color/w_text"
-                android:textSize="11sp" />
+            <ImageView
+                android:id="@+id/sr_ring"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter" />
 
-            <TextView
-                android:id="@+id/sr_value"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-medium"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:text="86.37 GB"
-                android:textColor="@color/w_text"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/sr_caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@string/sr_caption"
+                    android:textColor="@color/w_text"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/sr_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="86.37 GB"
+                    android:textColor="@color/w_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 </FrameLayout>

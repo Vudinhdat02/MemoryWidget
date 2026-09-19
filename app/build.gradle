@@ -10,18 +10,29 @@ android {
         applicationId 'com.vdd.memwidget'
         minSdk 31          // Android 12+ (Material You colors, widget preview layouts)
         targetSdk 35
-        versionCode 3
-        versionName '1.2'
+        versionCode 4
+        versionName '1.3'
     }
 
     signingConfigs {
         release {
-            // release.keystore là khóa ký cá nhân, KHÔNG được đưa lên GitHub (xem .gitignore).
-            // Có file này ở thư mục gốc thì dùng nó; không có (máy khác, GitHub Actions) thì buildTypes bên dưới
-            // tự chuyển sang khóa debug để vẫn build được.
-            def ks = rootProject.file('release.keystore')
-            if (ks.exists()) {
-                storeFile ks
+            // Thứ tự ưu tiên (các file khóa KHÔNG được đưa lên GitHub, xem .gitignore):
+            //   1) keystore.properties + release.jks ở thư mục gốc (khóa cá nhân, dùng khi build trên máy bạn)
+            //   2) release.keystore ở thư mục gốc (GitHub Actions tự tạo từ secret KEYSTORE_BASE64)
+            //   3) không có gì -> buildTypes bên dưới dùng khóa debug để vẫn build được
+            def props = new Properties()
+            def propsFile = rootProject.file('keystore.properties')
+            if (propsFile.exists()) {
+                propsFile.withInputStream { props.load(it) }
+            }
+            def legacy = rootProject.file('release.keystore')
+            if (props.getProperty('storeFile') && rootProject.file(props.getProperty('storeFile')).exists()) {
+                storeFile rootProject.file(props.getProperty('storeFile'))
+                storePassword props.getProperty('storePassword')
+                keyAlias props.getProperty('keyAlias')
+                keyPassword props.getProperty('keyPassword')
+            } else if (legacy.exists()) {
+                storeFile legacy
                 storePassword System.getenv('KEYSTORE_PASSWORD') ?: 'memwidget'
                 keyAlias System.getenv('KEY_ALIAS') ?: 'memwidget'
                 keyPassword System.getenv('KEY_PASSWORD') ?: 'memwidget'
@@ -32,7 +43,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig rootProject.file('release.keystore').exists() ? signingConfigs.release : signingConfigs.debug
+            signingConfig signingConfigs.release.storeFile != null ? signingConfigs.release : signingConfigs.debug
         }
     }
 

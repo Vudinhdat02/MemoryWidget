@@ -44,7 +44,7 @@ final class WidgetKinds {
             new Kind(Widget2x4Provider.class, R.string.widget_2x4_label, 4, 2, 300, 120, 320, 130),
             new Kind(DeviceInfoWidgetProvider.class, R.string.widget_deviceinfo_label, 4, 2, 300, 130, 320, 145),
             new Kind(TerminalWidgetProvider.class, R.string.widget_terminal_label, 4, 2, 300, 130, 320, 145),
-            new Kind(RamGaugeWidgetProvider.class, R.string.widget_ramgauge_label, 2, 1, 150, 76, 160, 84),
+            new Kind(RamGaugeWidgetProvider.class, R.string.widget_ramgauge_label, 2, 1, 150, 76, 160, 76),
             new Kind(StorageWidgetProvider.class, R.string.widget_storage_label, 2, 1, 150, 76, 160, 76),
             new Kind(BatteryWidgetProvider.class, R.string.widget_battery_label, 2, 1, 150, 76, 160, 76),
             new Kind(RamCardWidgetProvider.class, R.string.widget_ramcard_label, 2, 2, 150, 150, 160, 160),
@@ -53,17 +53,20 @@ final class WidgetKinds {
     private WidgetKinds() {}
 
     static RemoteViews build(Context ctx, int kind, Snapshot s, float w, float h, boolean preview) {
+        RemoteViews rv;
         switch (kind) {
-            case SQUARE_2X2: return WidgetViews.square2x2(ctx, s, w, h, preview);
-            case BARS_2X4: return WidgetViews.bars2x4(ctx, s, w, h, preview);
-            case DEVICE_INFO: return WidgetViews.deviceInfo(ctx, s, w, h, preview);
-            case TERMINAL: return WidgetViews.terminal(ctx, s, w, h, preview);
-            case RAM_GAUGE: return WidgetViews.ramGauge(ctx, s, w, h, preview);
-            case STORAGE: return WidgetViews.storageRing(ctx, s, w, h, preview);
-            case BATTERY: return WidgetViews.battery(ctx, s, w, h, preview);
-            case RAM_CARD: return WidgetViews.ramCard(ctx, s, w, h, preview);
+            case SQUARE_2X2: rv = WidgetViews.square2x2(ctx, s, w, h, preview); break;
+            case BARS_2X4: rv = WidgetViews.bars2x4(ctx, s, w, h, preview); break;
+            case DEVICE_INFO: rv = WidgetViews.deviceInfo(ctx, s, w, h, preview); break;
+            case TERMINAL: rv = WidgetViews.terminal(ctx, s, w, h, preview); break;
+            case RAM_GAUGE: rv = WidgetViews.ramGauge(ctx, s, w, h, preview); break;
+            case STORAGE: rv = WidgetViews.storageRing(ctx, s, w, h, preview); break;
+            case BATTERY: rv = WidgetViews.battery(ctx, s, w, h, preview); break;
+            case RAM_CARD: rv = WidgetViews.ramCard(ctx, s, w, h, preview); break;
             default: throw new IllegalArgumentException("kind " + kind);
         }
+        WidgetStyle.apply(ctx, rv, kind); // nền đặc / kính + độ trong suốt do người dùng chọn
+        return rv;
     }
 
     /**

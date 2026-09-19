@@ -28,4 +28,19 @@
     <color name="term_dot_red">#FF5F57</color>
     <color name="term_dot_yellow">#FEBC2E</color>
     <color name="term_dot_green">#28C840</color>
+
+    <!-- Hiệu ứng kính (Liquid Glass) - giao diện tối -->
+    <color name="glass_top">#B0343734</color>
+    <color name="glass_bottom">#70262826</color>
+    <color name="glass_edge">#66FFFFFF</color>
+    <color name="glass_sheen">#38FFFFFF</color>
+    <color name="glass_rim">#2EFFFFFF</color>
+    <color name="glass_clear">#00FFFFFF</color>
+    <color name="glass_term_top">#B01F2822</color>
+    <color name="glass_term_bottom">#70182019</color>
+
+    <!-- Nền xem trước widget trong app (giống hình nền màn hình chính) -->
+    <color name="stage_a">#1F3A5F</color>
+    <color name="stage_b">#3B2F63</color>
+    <color name="stage_c">#5C2B44</color>
 </resources>

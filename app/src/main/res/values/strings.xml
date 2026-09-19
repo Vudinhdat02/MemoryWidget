@@ -54,6 +54,7 @@
     <string name="di_storage">Storage</string>
     <string name="di_battery">Battery</string>
     <string name="di_battery_charging">Battery (Charging)</string>
+    <string name="rg_caption">RAM Used</string>
     <string name="sr_caption">Storage Free</string>
     <string name="bt_title">Battery %1$d%%</string>
     <string name="bt_temp">Temp. %1$s°C</string>
@@ -62,4 +63,9 @@
 
     <string name="gallery_add">Add to home screen</string>
     <string name="gallery_size">%1$d × %2$d</string>
+
+    <string name="style_title">Widget appearance</string>
+    <string name="style_transparency">Transparency</string>
+    <string name="style_glass">Liquid Glass effect</string>
+    <string name="style_glass_desc">Frosted glass background with a bright edge and gloss. Applies to all widgets.</string>
 </resources>

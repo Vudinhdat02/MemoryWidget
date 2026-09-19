@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RemoteViews;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,6 +87,44 @@ public class MainActivity extends Activity {
         findViewById(R.id.btn_storage).setOnClickListener(v -> openStorageSettings());
         gallery = findViewById(R.id.widget_gallery);
         buildGallery();
+        setupStyleControls();
+    }
+
+    /** Độ trong suốt (bước 5%) và công tắc hiệu ứng kính: lưu lại, cập nhật xem trước và mọi widget đang đặt. */
+    private void setupStyleControls() {
+        final SeekBar seek = findViewById(R.id.transparency_seek);
+        final TextView value = findViewById(R.id.transparency_value);
+        final Switch glass = findViewById(R.id.glass_switch);
+
+        int pct = WidgetStyle.transparency(this);
+        seek.setProgress(pct / 5);
+        value.setText(pct + "%");
+        glass.setChecked(WidgetStyle.glass(this));
+
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
+                int p = progress * 5;
+                value.setText(p + "%");
+                if (fromUser) {
+                    WidgetStyle.setTransparency(MainActivity.this, p);
+                    refreshGallery(); // xem trước đổi ngay khi kéo
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar bar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar bar) {
+                WidgetUpdater.updateAll(getApplicationContext()); // widget trên màn hình chính đổi khi thả tay
+            }
+        });
+        glass.setOnCheckedChangeListener((button, on) -> {
+            WidgetStyle.setGlass(this, on);
+            refreshGallery();
+            WidgetUpdater.updateAll(getApplicationContext());
+        });
     }
 
     @Override
@@ -253,7 +293,7 @@ public class MainActivity extends Activity {
         for (int i = 0; i < WidgetKinds.ALL.length; i++) {
             FrameLayout host = previewHosts[i];
             if (host == null) continue;
-            String key = WidgetKinds.key(i, snap);
+            String key = WidgetKinds.key(i, snap) + "|" + WidgetStyle.key(this);
             if (previewViews[i] != null && key.equals(previewKeys[i])) continue;
             try {
                 RemoteViews rv = WidgetKinds.build(this, i, snap, previewW[i], previewH[i], true);

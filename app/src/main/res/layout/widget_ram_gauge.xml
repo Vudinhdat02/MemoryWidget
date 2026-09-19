@@ -1,59 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- RAM sử dụng 2x1: cung tròn % + dung lượng dùng / tổng -->
+<!-- RAM sử dụng 2x1 (viên thuốc, giống widget bộ nhớ trong): vòng % bên trái + dung lượng RAM đã dùng
+     widget_frame lấp đầy ô launcher cấp; widget_root là thẻ thấp hơn ô một chút, nằm giữa theo chiều dọc
+     (chiều cao thật do WidgetViews đặt) để không cao hơn các icon ứng dụng bên cạnh. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_root"
+    android:id="@+id/widget_frame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/widget_card_bg">
+    android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/rg_box"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_gravity="center">
+        android:id="@+id/widget_root"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical">
 
         <ImageView
-            android:id="@+id/rg_gauge"
+            android:id="@+id/widget_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@null"
-            android:scaleType="fitCenter" />
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            android:src="@drawable/widget_pill_bg" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="14dp">
 
-            <TextView
-                android:id="@+id/rg_percent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:includeFontPadding="false"
-                android:text="78%"
-                android:textColor="@color/w_text"
-                android:textSize="13dp" />
+            <FrameLayout
+                android:id="@+id/rg_box"
+                android:layout_width="44dp"
+                android:layout_height="44dp">
 
-            <TextView
-                android:id="@+id/rg_detail"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/rg_gauge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter" />
+
+                <TextView
+                    android:id="@+id/rg_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="78%"
+                    android:textColor="@color/w_text"
+                    android:textSize="9dp" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:text="4.24G/5.42G"
-                android:textColor="@color/w_text_sub"
-                android:textSize="6dp" />
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rg_caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@string/rg_caption"
+                    android:textColor="@color/w_text"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/rg_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="4.24 GB"
+                    android:textColor="@color/w_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/rg_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:includeFontPadding="false"
-            android:text="@string/ram"
-            android:textColor="@color/w_text"
-            android:textSize="9dp" />
     </FrameLayout>
 </FrameLayout>

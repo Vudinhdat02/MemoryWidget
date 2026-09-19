@@ -25,6 +25,12 @@ final class WidgetViews {
     private static final float GAUGE_START = 144f;
     private static final float GAUGE_SWEEP = 252f;
 
+    /**
+     * Widget 2x1: thẻ chỉ cao bằng tỉ lệ này của ô launcher cấp (còn lại là lề trong suốt trên/dưới),
+     * để thẻ không cao hơn icon ứng dụng đặt cạnh. Muốn thấp/cao hơn thì chỉnh số này.
+     */
+    private static final float CARD_HEIGHT_RATIO_2X1 = 0.80f;
+
     private WidgetViews() {}
 
     // ------------------------------------------------------------------ tiện ích
@@ -41,6 +47,13 @@ final class WidgetViews {
     private static float fitSp(String text, float availDp, float maxSp) {
         float perChar = 0.58f; // bề ngang trung bình 1 ký tự / cỡ chữ
         return Math.max(9f, Math.min(maxSp, availDp / (Math.max(1, text.length()) * perChar)));
+    }
+
+    /** Đặt chiều cao thẻ của widget 2x1 (thẻ nằm giữa ô theo chiều dọc) và trả về chiều cao đó (dp). */
+    private static float pillCard(RemoteViews rv, float h) {
+        float ch = clamp(h * CARD_HEIGHT_RATIO_2X1, 44f, 64f);
+        rv.setViewLayoutHeight(R.id.widget_root, ch, DIP);
+        return ch;
     }
 
     private static void box(RemoteViews rv, int id, float w, float h) {
@@ -99,7 +112,7 @@ final class WidgetViews {
         int gPx = Math.round(TypedValue.applyDimension(DIP, g, ctx.getResources().getDisplayMetrics()));
 
         box(rv, R.id.widget_root, side, side);
-        rv.setViewPadding(R.id.widget_root, gPx, gPx, gPx, gPx);
+        rv.setViewPadding(R.id.widget_content, gPx, gPx, gPx, gPx);
         box(rv, R.id.rom_box, d, d);
         box(rv, R.id.ram_box, d, d);
         rv.setViewLayoutMargin(R.id.row_ram, RemoteViews.MARGIN_TOP, g, DIP);
@@ -208,16 +221,22 @@ final class WidgetViews {
     static RemoteViews ramGauge(Context ctx, Snapshot s, float w, float h, boolean preview) {
         RemoteViews rv = new RemoteViews(ctx.getPackageName(), R.layout.widget_ram_gauge);
         MemStats m = s.mem;
+        float u = scale(w, h, 160f, 76f);
 
-        float b = Math.max(40f, Math.min(w, h) * 0.88f);
-        box(rv, R.id.rg_box, b, b);
-        rv.setImageViewBitmap(R.id.rg_gauge, Gauges.arc(ctx, b, 1f, GAUGE_START, GAUGE_SWEEP,
-                m.ramPercent / 100f, b * 0.055f, track(ctx), green(ctx)));
-        dp(rv, R.id.rg_percent, b * 0.20f);
-        dp(rv, R.id.rg_detail, Math.max(6f, b * 0.093f));
-        dp(rv, R.id.rg_label, Math.max(8f, b * 0.135f));
+        float ch = pillCard(rv, h);
+        float r = clamp(ch * 0.74f, 30f, 64f);
+        box(rv, R.id.rg_box, r, r);
+        rv.setImageViewBitmap(R.id.rg_gauge, Gauges.arc(ctx, r, 1f, 270f, 360f,
+                m.ramPercent / 100f, r * 0.20f, track(ctx), green(ctx)));
         rv.setTextViewText(R.id.rg_percent, m.ramPercent + "%");
-        rv.setTextViewText(R.id.rg_detail, gbPair(m.ramUsed, m.ramTotal, true, "/"));
+        dp(rv, R.id.rg_percent, r * 0.22f);
+
+        String value = Fmt.gbFixed(m.ramUsed, true, 2) + " GB";
+        String caption = ctx.getString(R.string.rg_caption);
+        float avail = w - 12f - 14f - r - 10f;
+        rv.setTextViewText(R.id.rg_value, value);
+        sp(rv, R.id.rg_value, fitSp(value, avail, 19f * u));
+        sp(rv, R.id.rg_caption, fitSp(caption, avail, Math.min(11f * u, 13f)));
         tapToOpen(ctx, rv, preview);
         return rv;
     }
@@ -229,7 +248,8 @@ final class WidgetViews {
         MemStats m = s.mem;
         float u = scale(w, h, 160f, 76f);
 
-        float r = clamp(h * 0.74f, 30f, 64f);
+        float ch = pillCard(rv, h);
+        float r = clamp(ch * 0.74f, 30f, 64f);
         box(rv, R.id.sr_ring, r, r);
         rv.setImageViewBitmap(R.id.sr_ring, Gauges.arc(ctx, r, 1f, 270f, 360f,
                 m.romPercent / 100f, r * 0.20f, track(ctx), green(ctx)));
@@ -251,7 +271,8 @@ final class WidgetViews {
         BatteryInfo b = s.bat;
         float u = scale(w, h, 160f, 76f);
 
-        float r = clamp(h * 0.74f, 30f, 64f);
+        float ch = pillCard(rv, h);
+        float r = clamp(ch * 0.74f, 30f, 64f);
         box(rv, R.id.bt_ring, r, r);
         rv.setImageViewBitmap(R.id.bt_ring, Gauges.batteryRing(ctx, r, b.percent / 100f, b.isPowered(),
                 r * 0.10f, track(ctx), green(ctx), ctx.getColor(R.color.w_text_sub)));

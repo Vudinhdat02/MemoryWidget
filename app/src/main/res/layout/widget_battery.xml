@@ -1,55 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Pin 2x1 (viên thuốc): vòng pin + % + nhiệt độ -->
+<!-- Pin 2x1 (viên thuốc): vòng pin + % + nhiệt độ
+     widget_frame lấp đầy ô launcher cấp; widget_root là thẻ thấp hơn ô một chút, nằm giữa theo chiều dọc
+     (chiều cao thật do WidgetViews đặt) để không cao hơn các icon ứng dụng bên cạnh. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_root"
+    android:id="@+id/widget_frame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/widget_pill_bg">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/widget_root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="14dp">
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical">
 
         <ImageView
-            android:id="@+id/bt_ring"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:id="@+id/widget_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="@null"
-            android:scaleType="fitCenter" />
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            android:src="@drawable/widget_pill_bg" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="14dp">
 
-            <TextView
-                android:id="@+id/bt_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:text="Battery  97%"
-                android:textColor="@color/w_text"
-                android:textSize="13sp" />
+            <ImageView
+                android:id="@+id/bt_ring"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter" />
 
-            <TextView
-                android:id="@+id/bt_temp"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:text="Temp.  34.5°C"
-                android:textColor="@color/w_text"
-                android:textSize="13sp" />
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bt_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="Battery  97%"
+                    android:textStyle="bold"
+                    android:textColor="@color/w_text"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/bt_temp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="Temp.  34.5°C"
+                    android:textStyle="bold"
+                    android:textColor="@color/w_text"
+                    android:textSize="13sp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 </FrameLayout>

@@ -54,6 +54,7 @@
     <string name="di_storage">Bộ nhớ trong</string>
     <string name="di_battery">Pin</string>
     <string name="di_battery_charging">Pin (đang sạc)</string>
+    <string name="rg_caption">RAM đã dùng</string>
     <string name="sr_caption">Bộ nhớ trống</string>
     <string name="bt_title">Pin %1$d%%</string>
     <string name="bt_temp">Nhiệt %1$s°C</string>
@@ -62,4 +63,9 @@
 
     <string name="gallery_add">Thêm vào màn hình chính</string>
     <string name="gallery_size">%1$d × %2$d</string>
+
+    <string name="style_title">Giao diện widget</string>
+    <string name="style_transparency">Độ trong suốt</string>
+    <string name="style_glass">Hiệu ứng kính (Liquid Glass)</string>
+    <string name="style_glass_desc">Nền mờ như kính, viền sáng và bóng. Áp dụng cho mọi widget.</string>
 </resources>

@@ -90,10 +90,11 @@ final class WidgetUpdater {
         lastKeys.keySet().retainAll(alive);
     }
 
-    /** Thay đổi giao diện (sáng/tối, màu nền hệ thống) -> phải vẽ lại các bitmap. */
+    /** Thay đổi giao diện (sáng/tối, màu nền hệ thống, tuỳ chọn trong suốt/kính) -> phải vẽ lại widget. */
     private static String themeKey(Context ctx) {
         int night = ctx.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-        return night + ":" + ctx.getColor(R.color.card_bg) + ":" + ctx.getColor(R.color.text_primary);
+        return night + ":" + ctx.getColor(R.color.card_bg) + ":" + ctx.getColor(R.color.text_primary)
+                + ":" + WidgetStyle.key(ctx);
     }
 
     /** Kích thước (dp) launcher cấp cho widget, theo hướng màn hình hiện tại. */
