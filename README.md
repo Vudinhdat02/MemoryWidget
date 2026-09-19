@@ -117,29 +117,6 @@ Cần JDK 17+ và Android SDK (platform 35).
 APK nằm ở `app/build/outputs/apk/release/app-release.apk`. Cần khai báo đường dẫn SDK qua biến môi trường `ANDROID_HOME`
 hoặc file `local.properties` (`sdk.dir=...`, file này không được đưa lên Git).
 
-### Ký APK
-
-- Nếu có file `release.keystore` ở thư mục gốc, app được ký bằng khóa đó (mật khẩu đọc từ biến môi trường
-  `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`; mặc định `memwidget` cho cả ba).
-- Nếu **không có**, gradle tự dùng khóa debug để vẫn build được.
-- File keystore **không nằm trong repo** (đã chặn trong `.gitignore`). APK ký bằng hai khóa khác nhau thì không cài đè lên nhau được,
-  muốn cập nhật thì hãy luôn dùng cùng một khóa (hoặc gỡ bản cũ trước).
-- Tạo khóa mới: `keytool -genkeypair -v -keystore release.keystore -alias memwidget -keyalg RSA -keysize 2048 -validity 36500`.
-
-### Build tự động bằng GitHub Actions
-
-Repo đã có workflow `.github/workflows/build.yml`:
-
-- Mỗi lần push lên `main` hoặc tạo pull request, GitHub tự build và lưu APK trong *Actions → lần chạy → Artifacts → RAM-ROM-apk*.
-- Đẩy một tag dạng `v1.2` thì APK còn được **tự đăng vào mục Releases**:
-
-  ```bash
-  git tag v1.2
-  git push origin v1.2
-  ```
-- Muốn APK trên GitHub ký bằng khóa của bạn: vào *Settings → Secrets and variables → Actions* và thêm
-  `KEYSTORE_BASE64` (nội dung base64 của file keystore; `base64 -w0 release.keystore`), tùy chọn thêm `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`.
-
 ## Cấu trúc mã nguồn
 
 ```
