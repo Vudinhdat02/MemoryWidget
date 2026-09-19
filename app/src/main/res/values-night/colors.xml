@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Giao diện tối -->
+<resources>
+    <color name="app_bg">@android:color/system_neutral1_900</color>
+    <color name="card_bg">@android:color/system_neutral1_800</color>
+    <color name="track">@android:color/system_accent2_700</color>
+    <color name="usage_green">#7FD69A</color>
+    <color name="ring_ram">@color/usage_green</color>
+    <color name="ring_rom">@color/usage_green</color>
+    <color name="text_primary">@android:color/system_neutral1_50</color>
+    <color name="text_secondary">@android:color/system_neutral2_200</color>
+    <color name="btn_bg">@android:color/system_accent1_200</color>
+    <color name="btn_fg">@android:color/system_accent1_900</color>
+    <color name="tonal_bg">@android:color/system_accent1_700</color>
+    <color name="tonal_fg">@android:color/system_accent1_100</color>
+
+    <!-- Bộ widget mẫu mới (màu cố định, dịu mắt) -->
+    <color name="w_card">#2A2C2A</color>
+    <color name="w_card_terminal">#1F2822</color>
+    <color name="w_text">#E4E6E4</color>
+    <color name="w_text_sub">#A9ADA9</color>
+    <color name="w_track">#484B48</color>
+    <color name="w_green">#86C79E</color>
+    <color name="w_green_soft">#5E9074</color>
+    <color name="term_key">#8FB09B</color>
+    <color name="term_val">#E3EBE6</color>
+    <color name="term_title">#B3C4BA</color>
+    <color name="term_dot_red">#FF5F57</color>
+    <color name="term_dot_yellow">#FEBC2E</color>
+    <color name="term_dot_green">#28C840</color>
+</resources>

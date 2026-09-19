@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RAM &amp; ROM</string>
+    <string name="widget_2x2_label">RAM &amp; ROM 2×2</string>
+    <string name="widget_2x4_label">RAM &amp; ROM 2×4</string>
+    <string name="widget_2x2_desc">Hai vòng tròn % ROM và RAM xếp thành một cột, dạng vuông</string>
+    <string name="widget_2x4_desc">Thanh dung lượng RAM và ROM, rộng 4 ô cao 2 ô</string>
+
+    <string name="ram">RAM</string>
+    <string name="rom">ROM</string>
+    <string name="widget_clean">Dọn RAM</string>
+    <string name="widget_rom_label">Bộ nhớ trong</string>
+    <string name="widget_ram_label">Bộ nhớ RAM</string>
+
+    <string name="monitor_channel">Làm mới widget</string>
+    <string name="monitor_text">Giữ widget cập nhật trực tiếp khi màn hình bật</string>
+
+    <string name="subtitle">Theo dõi bộ nhớ theo thời gian thực</string>
+    <string name="btn_clean">Dọn RAM</string>
+    <string name="cleaning">Đang dọn…</string>
+    <string name="btn_storage">Mở bộ nhớ hệ thống</string>
+    <string name="widgets_title">Widget màn hình chính</string>
+    <string name="add_widget_2x2">Thêm widget 2×2</string>
+    <string name="add_widget_2x4">Thêm widget 2×4</string>
+    <string name="widgets_hint">Hoặc nhấn giữ màn hình chính, chọn Widget rồi tìm RAM &amp; ROM.</string>
+    <string name="pin_unsupported">Launcher không hỗ trợ ghim tự động. Hãy nhấn giữ màn hình chính và chọn Widget.</string>
+
+    <string name="row_used">Đã dùng</string>
+    <string name="row_free">Còn trống</string>
+    <string name="row_cached">Bộ nhớ đệm (cache)</string>
+    <string name="row_swap">Swap / zram</string>
+    <string name="row_total">Tổng dung lượng</string>
+    <string name="sub_free">Còn trống %1$s</string>
+
+    <string name="clean_done">Đã giải phóng %1$s</string>
+    <string name="clean_none">Không có tiến trình nền nào cần dọn</string>
+    <string name="clean_note">Android tự quản lý RAM. Nút dọn sẽ dừng các ứng dụng chạy nền (chúng có thể tự mở lại) và xóa cache của chính ứng dụng này. Cache của ứng dụng khác chỉ xóa được trong Cài đặt hệ thống.</string>
+
+    <!-- Bộ widget mẫu mới -->
+    <string name="widget_deviceinfo_label">Thông tin thiết bị</string>
+    <string name="widget_terminal_label">Kiểu terminal</string>
+    <string name="widget_ramgauge_label">RAM sử dụng</string>
+    <string name="widget_storage_label">Bộ nhớ trong</string>
+    <string name="widget_battery_label">Pin</string>
+    <string name="widget_ramcard_label">RAM chi tiết</string>
+    <string name="widget_deviceinfo_desc">Đồng hồ, ngày, vòng RAM, thanh bộ nhớ trong và pin</string>
+    <string name="widget_terminal_desc">Tên máy, phiên bản Android, chip, pin và ổ đĩa theo kiểu terminal</string>
+    <string name="widget_ramgauge_desc">Đồng hồ đo RAM đang dùng</string>
+    <string name="widget_storage_desc">Dung lượng bộ nhớ trong còn trống kèm vòng phần trăm</string>
+    <string name="widget_battery_desc">Mức pin và nhiệt độ</string>
+    <string name="widget_ramcard_desc">Đồng hồ RAM lớn, có tổng và dung lượng còn trống</string>
+
+    <string name="date_format">EEEE, d MMMM</string>
+    <string name="di_storage">Bộ nhớ trong</string>
+    <string name="di_battery">Pin</string>
+    <string name="di_battery_charging">Pin (đang sạc)</string>
+    <string name="sr_caption">Bộ nhớ trống</string>
+    <string name="bt_title">Pin %1$d%%</string>
+    <string name="bt_temp">Nhiệt %1$s°C</string>
+    <string name="rc_total">Tổng</string>
+    <string name="rc_available">Còn trống</string>
+
+    <string name="gallery_add">Thêm vào màn hình chính</string>
+    <string name="gallery_size">%1$d × %2$d</string>
+</resources>

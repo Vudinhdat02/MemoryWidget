@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Thông tin thiết bị 4x2: đồng hồ + ngày, vòng RAM, thanh bộ nhớ trong, thanh pin -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_card_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="10dp">
+
+        <!-- Hàng trên: giờ + ngày -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.6"
+            android:gravity="bottom|start"
+            android:orientation="horizontal">
+
+            <TextClock
+                android:id="@+id/di_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:format12Hour="h:mm"
+                android:format24Hour="HH:mm"
+                android:includeFontPadding="false"
+                android:textColor="@color/w_text"
+                android:textSize="38sp" />
+
+            <TextClock
+                android:id="@+id/di_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="4dp"
+                android:format12Hour="@string/date_format"
+                android:format24Hour="@string/date_format"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/w_text_sub"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Hàng dưới: vòng RAM + hai thanh -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5.4"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/di_gauge_box"
+                android:layout_width="68dp"
+                android:layout_height="68dp">
+
+                <ImageView
+                    android:id="@+id/di_gauge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/di_ram_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:includeFontPadding="false"
+                        android:text="78%"
+                        android:textColor="@color/w_text"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/di_ram_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="4.24G/5.42G"
+                        android:textColor="@color/w_text_sub"
+                        android:textSize="6dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/di_ram_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:includeFontPadding="false"
+                    android:text="@string/ram"
+                    android:textColor="@color/w_text"
+                    android:textSize="10dp" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Bộ nhớ trong -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/di_storage_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/di_storage"
+                        android:textColor="@color/w_text_sub"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/di_storage_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="76.07G / 108.86G"
+                        android:textColor="@color/w_text_sub"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/di_storage_bar"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="6dp"
+                        android:layout_weight="1"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="69"
+                        android:progressDrawable="@drawable/progress_bar_soft" />
+
+                    <TextView
+                        android:id="@+id/di_storage_percent"
+                        android:layout_width="34dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:gravity="end"
+                        android:includeFontPadding="false"
+                        android:text="69%"
+                        android:textColor="@color/w_text_sub"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Pin -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/di_battery_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/di_battery"
+                        android:textColor="@color/w_text_sub"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/di_battery_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="4141mV / 32°C"
+                        android:textColor="@color/w_text_sub"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/di_battery_bar"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="6dp"
+                        android:layout_weight="1"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="89"
+                        android:progressDrawable="@drawable/progress_bar_soft" />
+
+                    <TextView
+                        android:id="@+id/di_battery_percent"
+                        android:layout_width="34dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:gravity="end"
+                        android:includeFontPadding="false"
+                        android:text="89%"
+                        android:textColor="@color/w_text_sub"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

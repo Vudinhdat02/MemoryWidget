@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- RAM sử dụng 2x1: cung tròn % + dung lượng dùng / tổng -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_card_bg">
+
+    <FrameLayout
+        android:id="@+id/rg_box"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/rg_gauge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rg_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:text="78%"
+                android:textColor="@color/w_text"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/rg_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="4.24G/5.42G"
+                android:textColor="@color/w_text_sub"
+                android:textSize="6dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rg_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:includeFontPadding="false"
+            android:text="@string/ram"
+            android:textColor="@color/w_text"
+            android:textSize="9dp" />
+    </FrameLayout>
+</FrameLayout>

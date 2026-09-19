@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kiểu terminal 4x2 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_terminal_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="10dp">
+
+        <!-- Thanh tiêu đề: 3 chấm + tên file -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/tm_dot1"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dot_red" />
+
+                <ImageView
+                    android:id="@+id/tm_dot2"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="6dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dot_yellow" />
+
+                <ImageView
+                    android:id="@+id/tm_dot3"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="6dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dot_green" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:text="device_info.sh"
+                android:textColor="@color/term_title"
+                android:textSize="11sp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tm_dev_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Device"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_dev_colon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:text=":"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_dev_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="SAMSUNG Galaxy S23"
+                android:textColor="@color/term_val"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tm_sys_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="System"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_sys_colon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:text=":"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_sys_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Android 16 Baklava (API 36)"
+                android:textColor="@color/term_val"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tm_soc_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="SOC"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_soc_colon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:text=":"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_soc_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Qualcomm® Snapdragon 8 Gen 2"
+                android:textColor="@color/term_val"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tm_bat_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Battery"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_bat_colon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:text=":"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_bat_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="43% 30.9°C discharging"
+                android:textColor="@color/term_val"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tm_dsk_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Disk"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_dsk_colon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:text=":"
+                android:textColor="@color/term_key"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tm_dsk_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="monospace"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="120.5G / 225G (53%)"
+                android:textColor="@color/term_val"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Dòng lệnh -->
+        <TextView
+            android:id="@+id/tm_prompt"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:ellipsize="end"
+            android:fontFamily="monospace"
+            android:gravity="bottom|start"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="DevInfo@Galaxy S23:~$ _"
+            android:textColor="@color/term_key"
+            android:textSize="12sp" />
+    </LinearLayout>
+</FrameLayout>

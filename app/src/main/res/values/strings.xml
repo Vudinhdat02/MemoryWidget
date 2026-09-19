@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RAM &amp; ROM</string>
+    <string name="widget_2x2_label">RAM &amp; ROM 2×2</string>
+    <string name="widget_2x4_label">RAM &amp; ROM 2×4</string>
+    <string name="widget_2x2_desc">Square widget with RAM and ROM usage rings</string>
+    <string name="widget_2x4_desc">RAM and ROM usage bars, 4 cells wide and 2 tall</string>
+
+    <string name="ram">RAM</string>
+    <string name="rom">ROM</string>
+    <string name="widget_clean">Clean</string>
+    <string name="widget_rom_label">Storage</string>
+    <string name="widget_ram_label">RAM</string>
+
+    <string name="monitor_channel">Widget refresh</string>
+    <string name="monitor_text">Keeps the widget live while the screen is on</string>
+
+    <string name="subtitle">Live memory and storage usage</string>
+    <string name="btn_clean">Clean RAM</string>
+    <string name="cleaning">Cleaning…</string>
+    <string name="btn_storage">Open system storage</string>
+    <string name="widgets_title">Home screen widgets</string>
+    <string name="add_widget_2x2">Add 2×2 widget</string>
+    <string name="add_widget_2x4">Add 2×4 widget</string>
+    <string name="widgets_hint">Or long-press the home screen, tap Widgets and pick RAM &amp; ROM.</string>
+    <string name="pin_unsupported">Your launcher can\'t pin widgets automatically. Long-press the home screen and tap Widgets.</string>
+
+    <string name="row_used">Used</string>
+    <string name="row_free">Free</string>
+    <string name="row_cached">Cached</string>
+    <string name="row_swap">Swap / zram</string>
+    <string name="row_total">Total capacity</string>
+    <string name="sub_free">%1$s free</string>
+
+    <string name="clean_done">Freed %1$s</string>
+    <string name="clean_none">No background apps to clean</string>
+    <string name="clean_note">Android manages RAM on its own. Cleaning stops background apps (they may restart by themselves) and clears this app\'s cache. Other apps\' caches can only be cleared from system settings.</string>
+
+    <!-- Bộ widget mẫu mới -->
+    <string name="widget_deviceinfo_label">Device info</string>
+    <string name="widget_terminal_label">Terminal style</string>
+    <string name="widget_ramgauge_label">RAM usage</string>
+    <string name="widget_storage_label">Internal storage</string>
+    <string name="widget_battery_label">Battery</string>
+    <string name="widget_ramcard_label">RAM details</string>
+    <string name="widget_deviceinfo_desc">Clock, date, RAM ring, storage and battery bars</string>
+    <string name="widget_terminal_desc">Device name, Android version, chip, battery and disk in a terminal look</string>
+    <string name="widget_ramgauge_desc">RAM usage gauge</string>
+    <string name="widget_storage_desc">Free internal storage with a usage ring</string>
+    <string name="widget_battery_desc">Battery level and temperature</string>
+    <string name="widget_ramcard_desc">Large RAM gauge with total and available memory</string>
+
+    <string name="date_format">EEEE, MMMM d</string>
+    <string name="di_storage">Storage</string>
+    <string name="di_battery">Battery</string>
+    <string name="di_battery_charging">Battery (Charging)</string>
+    <string name="sr_caption">Storage Free</string>
+    <string name="bt_title">Battery %1$d%%</string>
+    <string name="bt_temp">Temp. %1$s°C</string>
+    <string name="rc_total">Total</string>
+    <string name="rc_available">Available</string>
+
+    <string name="gallery_add">Add to home screen</string>
+    <string name="gallery_size">%1$d × %2$d</string>
+</resources>

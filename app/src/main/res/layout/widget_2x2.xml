@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Widget 2x2 hình vuông.
+  widget_frame lấp đầy ô do launcher cấp (có thể dài/ngắn khác nhau);
+  widget_root là hình vuông nằm giữa - cạnh, lề, cỡ vòng tròn được WidgetUpdater
+  tính lại theo kích thước thật (xem WidgetUpdater.applySquareGeometry).
+  Các số dp ở đây chỉ là giá trị mặc định (ứng với cạnh 120dp) cho bản xem trước.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/widget_root"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:background="@drawable/widget_bg"
+        android:orientation="vertical"
+        android:padding="13dp">
+
+        <!-- ROM / Bộ nhớ trong (trên) -->
+        <LinearLayout
+            android:id="@+id/row_rom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/rom_box"
+                android:layout_width="40dp"
+                android:layout_height="40dp">
+
+                <ProgressBar
+                    android:id="@+id/rom_progress"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="48"
+                    android:progressDrawable="@drawable/progress_ring_rom" />
+
+                <TextView
+                    android:id="@+id/rom_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:text="48%"
+                    android:textColor="@color/text_primary"
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/rom_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical|start"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:text="@string/widget_rom_label"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- RAM / Bộ nhớ RAM (dưới) -->
+        <LinearLayout
+            android:id="@+id/row_ram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/ram_box"
+                android:layout_width="40dp"
+                android:layout_height="40dp">
+
+                <ProgressBar
+                    android:id="@+id/ram_progress"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="62"
+                    android:progressDrawable="@drawable/progress_ring_ram" />
+
+                <TextView
+                    android:id="@+id/ram_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:text="62%"
+                    android:textColor="@color/text_primary"
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/ram_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical|start"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:text="@string/widget_ram_label"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

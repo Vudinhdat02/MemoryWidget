@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.vdd.memwidget'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.vdd.memwidget'
+        minSdk 31          // Android 12+ (Material You colors, widget preview layouts)
+        targetSdk 35
+        versionCode 3
+        versionName '1.2'
+    }
+
+    signingConfigs {
+        release {
+            // release.keystore là khóa ký cá nhân, KHÔNG được đưa lên GitHub (xem .gitignore).
+            // Có file này ở thư mục gốc thì dùng nó; không có (máy khác, GitHub Actions) thì buildTypes bên dưới
+            // tự chuyển sang khóa debug để vẫn build được.
+            def ks = rootProject.file('release.keystore')
+            if (ks.exists()) {
+                storeFile ks
+                storePassword System.getenv('KEYSTORE_PASSWORD') ?: 'memwidget'
+                keyAlias System.getenv('KEY_ALIAS') ?: 'memwidget'
+                keyPassword System.getenv('KEY_PASSWORD') ?: 'memwidget'
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig rootProject.file('release.keystore').exists() ? signingConfigs.release : signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}

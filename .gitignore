@@ -1,0 +1,19 @@
+# Gradle / Android Studio
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Khóa ký APK cá nhân - TUYỆT ĐỐI không đưa lên GitHub
+*.keystore
+*.jks
+keystore.properties
+
+# APK build ra (đăng APK ở mục Releases, không commit vào repo)
+*.apk
+*.aab
